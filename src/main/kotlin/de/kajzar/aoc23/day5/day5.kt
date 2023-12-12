@@ -126,9 +126,9 @@ fun merge(a: Resolver, b: Resolver): Resolver {
     }
 }
 
-fun List<String>.split(pred: (String) -> Boolean): List<List<String>> {
-    val result = mutableListOf<List<String>>()
-    var next = mutableListOf<String>()
+fun <T> List<T>.split(pred: (T) -> Boolean): List<List<T>> {
+    val result = mutableListOf<List<T>>()
+    var next = mutableListOf<T>()
     forEach { l ->
         if (pred(l)) {
             result.add(next.toList())
