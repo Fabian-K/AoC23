@@ -97,9 +97,9 @@ private fun pairs(indices: IntRange) = buildList {
     }
 }
 
-fun Grid.colPairs() = pairs(cols())
+fun Grid.colPairs() = pairs(colIdxs())
 
-fun Grid.rowPairs() = pairs(rows())
+fun Grid.rowPairs() = pairs(rowIdxs())
 
 data class Diff(val oldChar: Char, val newChar: Char, val idx: Int)
 
@@ -123,9 +123,9 @@ private fun lines(indices: IntRange, accessor: (Int) -> List<Char>): Set<Line> {
         .toSet()
 }
 
-fun Grid.vLines() = lines(cols(), this::col)
+fun Grid.vLines() = lines(colIdxs(), this::col)
 
-fun Grid.hLines() = lines(rows(), this::row)
+fun Grid.hLines() = lines(rowIdxs(), this::row)
 
 private fun Line.pairs(indices: IntRange) = sequence {
     var l = left
@@ -143,8 +143,8 @@ private fun Line.pairs(indices: IntRange) = sequence {
 
 private fun IntRange.possibleLinePositions() = windowed(2).map { (a, b) -> Line(a, b) }
 
-fun Grid.cols() = first().indices
-fun Grid.rows() = indices
+fun Grid.colIdxs() = first().indices
+fun Grid.rowIdxs() = indices
 
 fun Grid.row(idx: Int) = get(idx)
 fun Grid.col(idx: Int) = map { it[idx] }
