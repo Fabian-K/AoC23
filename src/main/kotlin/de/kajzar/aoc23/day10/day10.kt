@@ -83,11 +83,11 @@ fun Grid.withSimpleConnectionTo(start: Position): Set<Position> {
     return result
 }
 
-fun Grid.dump(marked: Set<Position> = emptySet(), other: (Char) -> Char = { it }) {
+fun Grid.dump(marked: Set<Position> = emptySet(), other: (Char) -> Char = { it }, markWith: Char = 'X') {
     forEachIndexed { y, row ->
         row.forEachIndexed { x, c ->
             if (Position(x, y) in marked) {
-                print("X")
+                print(markWith)
             } else {
                 print(other(c))
             }
